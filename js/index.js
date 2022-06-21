@@ -13,7 +13,7 @@ const chatForm = document.querySelector(".chat-footer");
 const chatTextInput = document.querySelector("#textInput");
 const chatfileInput = document.querySelector("#uploads");
 
-const client = io("http://localhost:6500", { transports: ["websocket", "polling"] });
+const client = io(HOST, { transports: ["websocket", "polling"] });
 
 const checkToken = () => {
   if (!TOKEN) window.location.replace("login.html");
