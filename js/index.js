@@ -148,12 +148,6 @@ chatForm.addEventListener("submit", async (evt) => {
   if (text) formData.append("message_text", text);
   if (file) formData.append("file", file);
 
-  const data={
-    data:{
-
-    }
-  }
-
   client.emit("new message", { token: TOKEN, message: text });
 
   messagesList.scrollTop = messagesList.scrollHeight;
@@ -162,7 +156,16 @@ chatForm.addEventListener("submit", async (evt) => {
 });
 
 client.on("send message", (data) => {
-  
+  chatMain.innerHTML += `
+  <div class="msg-wrapper ">
+  <img src=${API + "/" + data.user.avatar} alt="profile-picture">
+  <div class="msg-text">
+      <p class="msg-author">${data.user.username}</p>
+      <p class="msg">${data.message}</p>
+      <p class="time">13:00</p>
+  </div>
+  </div>
+`;
 });
 
 renderUsers();
