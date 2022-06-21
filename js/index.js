@@ -148,19 +148,21 @@ chatForm.addEventListener("submit", async (evt) => {
   if (text) formData.append("message_text", text);
   if (file) formData.append("file", file);
 
-  const response = await fetch(HOST + "/messages", {
-    method: "POST",
-    headers: {
-      token: TOKEN,
-    },
-    body: formData,
-  });
+  const data={
+    data:{
 
-  const data = await response.json();
+    }
+  }
 
-  renderMessage(data);
+  client.emit("new message", { token: TOKEN, message: text });
+
+  messagesList.scrollTop = messagesList.scrollHeight;
 
   chatTextInput.value = null;
+});
+
+client.on("send message", (data) => {
+  
 });
 
 renderUsers();
