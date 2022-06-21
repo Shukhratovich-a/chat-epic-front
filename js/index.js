@@ -156,7 +156,7 @@ chatForm.addEventListener("submit", async (evt) => {
 });
 
 client.on("send message", (data) => {
-  chatMain.innerHTML += `
+  messagesList.innerHTML += `
   <div class="msg-wrapper ">
   <img src=${API + "/" + data.user.avatar} alt="profile-picture">
   <div class="msg-text">
